@@ -46,32 +46,6 @@ sudo usermod -aG docker $USER
 16. `docker rename CONTAINER1 CONTAINER2`：重命名容器
 17. `docker update CONTAINER --memory 500MB`：修改容器限制
 
-
-#### 实战
-
-进入AC Terminal，然后：
-```
-scp /var/lib/acwing/docker/images/docker_lesson_1_0.tar server_name:  # 将镜像上传到自己租的云端服务器
-ssh server_name  # 登录自己的云端服务器
-
-docker load -i docker_lesson_1_0.tar  # 将镜像加载到本地
-docker run -p 20000:22 --name my_docker_server -itd docker_lesson:1.0  # 创建并运行docker_lesson:1.0镜像
-
-docker attach my_docker_server  # 进入创建的docker容器
-passwd  # 设置root密码
-```
-
-去云平台控制台中修改安全组配置，放行端口`20000`。
-
-返回AC Terminal，即可通过`ssh`登录自己的`docker`容器：
-```
-ssh root@xxx.xxx.xxx.xxx -p 20000  # 将xxx.xxx.xxx.xxx替换成自己租的服务器的IP地址
-```
-
-然后，可以仿照上节课内容，创建工作账户`acs`。
-
-最后，可以参考[4. ssh——ssh登录](https://www.acwing.com/file_system/file/content/whole/index/content/2898263/)配置`docker`容器的别名和免密登录。
-
 ***
 
 #### 小Tips
