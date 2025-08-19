@@ -38,17 +38,34 @@ ssh user@hostname -p 22
 
 然后在文件中输入：
 ```
-Host myserver1
-    HostName IP地址或域名
-    User 用户名
-
-Host myserver2
-    HostName IP地址或域名
-    User 用户名
+Host myserver
+    HostName 192.168.1.100  # 服务器IP或域名
+    User root               # 登录用户名
+    Port 22                 # SSH端口（默认可省略）
+    IdentityFile ~/.ssh/id_rsa  # 指定私钥路径（免密登录关键）
 ```
+在SSH免密登录配置中，~/.ssh/config文件的格式用于简化连接参数并指定密钥路径，以下是核心配置格式及说明：
 
-之后再使用服务器时，可以直接使用别名`myserver1`、`myserver2`。
+1. ​​基本结构​​
+每个主机的配置以 Host开头，后跟别名，配置项需缩进（推荐4个空格或Tab）。例如：
+```
+Host myserver
+    HostName 192.168.1.100  # 服务器IP或域名
+    User root               # 登录用户名
+    Port 22                 # SSH端口（默认可省略）
+    IdentityFile ~/.ssh/id_rsa  # 指定私钥路径（免密登录关键，可省略）
+```
+2. ​​关键字段说明​​
 
+- ​`​Host`​​：定义别名，如 myserver，后续通过 ssh myserver连接。
+- `​HostName`​​：服务器的真实IP或域名。
+- ​`​User`​​：登录用户名，避免每次手动输入。
+- ​`​IdentityFile`​​：指定私钥文件路径（如 id_rsa），公钥需提前上传至服务器的 ~/.ssh/authorized_keys文件中。
+    - 路径可省略，默认为 ~/.ssh/id_rsa。
+- ​`​Port`​​：非默认端口时需指定（如 2222）。
+    - 端口号默认为22。（可省略）
+
+**注意：** `config`文件放在`~/.ssh/`目录下。
 
 ***
 
