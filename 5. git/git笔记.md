@@ -42,6 +42,7 @@
 #### 远程仓库
 
 1. `git remote add origin git@git.acwing.com:xxx/XXX.git`：将本地仓库关联到远程仓库
+- `git remote -v`:前连接的远程仓库地址
 2. `git push -u (第一次需要-u以后不需要)`  ：将当前分支推送到远程仓库
    - `git push origin branch_name`：将本地的某个分支推送到远程仓库
 3. `git clone git@git.acwing.com:xxx/XXX.git`：将远程仓库XXX下载到当前目录下
